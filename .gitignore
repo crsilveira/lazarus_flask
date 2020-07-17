@@ -6,3 +6,4 @@
 project1
 lib/
 backup/
+*.pyc
