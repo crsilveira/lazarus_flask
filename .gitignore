@@ -1,0 +1,8 @@
+
+*.o
+*.or
+*.bak
+*.exe
+project1
+lib/
+backup/

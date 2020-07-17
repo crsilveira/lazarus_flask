@@ -1,0 +1,163 @@
+object Form1: TForm1
+  Left = 239
+  Height = 765
+  Top = 110
+  Width = 1027
+  ActiveControl = edtcodcliente
+  Caption = 'Form1'
+  ClientHeight = 765
+  ClientWidth = 1027
+  LCLVersion = '2.0.8.0'
+  object btnBuscaTudo: TBitBtn
+    Left = 40
+    Height = 30
+    Top = 59
+    Width = 104
+    Caption = 'Busca'
+    OnClick = btnBuscaTudoClick
+    TabOrder = 0
+  end
+  object Memo1: TMemo
+    Left = 40
+    Height = 288
+    Top = 144
+    Width = 472
+    Lines.Strings = (
+      'Memo1'
+    )
+    ScrollBars = ssAutoVertical
+    TabOrder = 1
+  end
+  object edtcodcliente: TEdit
+    Left = 152
+    Height = 26
+    Top = 62
+    Width = 56
+    TabOrder = 2
+  end
+  object edtnomecliente: TEdit
+    Left = 216
+    Height = 26
+    Top = 62
+    Width = 296
+    TabOrder = 3
+  end
+  object btnBuscaUmRegistro: TBitBtn
+    Left = 41
+    Height = 30
+    Top = 96
+    Width = 104
+    Caption = 'Ler Registro :'
+    OnClick = btnBuscaUmRegistroClick
+    TabOrder = 4
+  end
+  object Edit3: TEdit
+    Left = 152
+    Height = 26
+    Top = 99
+    Width = 56
+    TabOrder = 5
+    Text = '10'
+  end
+  object btnEnviar: TBitBtn
+    Left = 528
+    Height = 30
+    Top = 96
+    Width = 75
+    Caption = 'Enviar'
+    OnClick = btnEnviarClick
+    TabOrder = 6
+  end
+  object Label1: TLabel
+    Left = 44
+    Height = 15
+    Top = 129
+    Width = 81
+    Caption = 'Retorno Busca'
+    ParentColor = False
+  end
+  object Label2: TLabel
+    Left = 528
+    Height = 15
+    Top = 129
+    Width = 77
+    Caption = 'Retorno Envio'
+    ParentColor = False
+  end
+  object Memo2: TMemo
+    Left = 528
+    Height = 288
+    Top = 144
+    Width = 488
+    Lines.Strings = (
+      'Memo2'
+    )
+    TabOrder = 7
+  end
+  object btnCarregaTodaTabela: TBitBtn
+    Left = 568
+    Height = 30
+    Top = 8
+    Width = 148
+    Caption = 'Busca Estrutura'
+    OnClick = btnCarregaTodaTabelaClick
+    TabOrder = 8
+    Visible = False
+  end
+  object DBGrid1: TDBGrid
+    Left = 41
+    Height = 282
+    Top = 462
+    Width = 975
+    Color = clWindow
+    Columns = <>
+    DataSource = DataSource1
+    Options = [dgTitles, dgIndicator, dgColumnResize, dgColumnMove, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgAutoSizeColumns]
+    TabOrder = 9
+    OnCellClick = DBGrid1CellClick
+  end
+  object btnEstruturaGrid: TBitBtn
+    Left = 568
+    Height = 30
+    Top = 40
+    Width = 148
+    Caption = 'Busca Estrutura Grid'
+    OnClick = btnEstruturaGridClick
+    TabOrder = 10
+    Visible = False
+  end
+  object edtcaminho: TEdit
+    Left = 50
+    Height = 26
+    Top = 15
+    Width = 310
+    TabOrder = 11
+    Text = 'http://127.0.0.1:5000/'
+  end
+  object Label3: TLabel
+    Left = 728
+    Height = 15
+    Top = 91
+    Width = 38
+    Caption = 'Página'
+    ParentColor = False
+  end
+  object edtPagina: TEdit
+    Left = 775
+    Height = 26
+    Top = 89
+    Width = 56
+    TabOrder = 12
+    Text = '1'
+  end
+  object DataSource1: TDataSource
+    DataSet = BufDataset1
+    left = 424
+    top = 24
+  end
+  object BufDataset1: TBufDataset
+    FieldDefs = <>
+    left = 280
+    top = 24
+  end
+end
