@@ -12,9 +12,9 @@ def hello_world():
         if 'dados' in data:
             cli = AtsCliente()
             x = cli.edita_cliente(data['dados'])
-        if 'estrutura' in data:
+        if 'cliente_tabela' in data:
             cli = AtsCliente()
-            x = cli.estrutura_cliente()
+            x = cli.cliente_tabela()
             #import pudb;pu.db
         if 'estrutura_grid' in data:
             cli = AtsCliente()
@@ -33,4 +33,4 @@ def hello_world():
         return z
 
 if __name__ == "__main__":
-    app.run()
+    app.run('0.0.0.0', debug=False)

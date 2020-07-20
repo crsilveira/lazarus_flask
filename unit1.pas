@@ -14,6 +14,7 @@ type
   { TForm1 }
 
   TForm1 = class(TForm)
+    btnCadastroCliente: TBitBtn;
     btnBuscaTudo: TBitBtn;
     btnBuscaUmRegistro: TBitBtn;
     btnCarregaTodaTabela: TBitBtn;
@@ -34,6 +35,7 @@ type
     Memo2: TMemo;
     procedure btnBuscaTudoClick(Sender: TObject);
     procedure btnBuscaUmRegistroClick(Sender: TObject);
+    procedure btnCadastroClienteClick(Sender: TObject);
     procedure btnCarregaTodaTabelaClick(Sender: TObject);
     procedure btnEstruturaGridClick(Sender: TObject);
     procedure btnEnviarClick(Sender: TObject);
@@ -48,6 +50,8 @@ var
   Form1: TForm1;
 
 implementation
+
+uses uClienteCadastro;
 
 {$R *.lfm}
 
@@ -90,6 +94,7 @@ begin
       end;
       free;
     end;
+    BufDataSet1.SaveToFile('cliente.bds');
   finally
     l.Free;
   end;
@@ -156,6 +161,20 @@ begin
   BufDataset1.Filtered:=True;
 end;
 
+procedure TForm1.btnCadastroClienteClick(Sender: TObject);
+begin
+  fClienteCadastro.caminho_server := edtcaminho.Text;
+  //fClienteCadastro.BufDataset1.BeforeInsert';
+  if fileExists('cliente.bds') then
+  begin
+    fClienteCadastro.BufDataset1.LoadFromFile('cliente.bds');
+    fClienteCadastro.BufDataset1.Filtered:=False;
+    fClienteCadastro.BufDataset1.Filter:='codcliente='+edit3.Text;
+    fClienteCadastro.BufDataset1.Filtered:=True;
+  end;
+  fClienteCadastro.ShowModal;
+end;
+
 procedure TForm1.btnCarregaTodaTabelaClick(Sender: TObject);
 var
   jData : TJSONData;
@@ -176,7 +195,7 @@ begin
   postJson.Add('title', 'Pegando Estrutura Tabela');
   postJson.Add('body', 'Estrutura Tabela Cliente');
   dadosJson.Add('nometabela', 'Cliente');
-  postJson.Add('estrutura', dadosJson);
+  postJson.Add('cliente_tabela', dadosJson);
   postJson.Add('userId', 1);
   With TFPHttpClient.Create(Nil) do
     try
@@ -228,6 +247,10 @@ var
   t: String;
   s: String;
 begin
+  // TODO tenho q separar o buffdataset do GRID .... ???!!!!
+  // em um preciso todos os campos o outro nao, nao quero estrever a
+  // estrutura toda da tabela no ats_cliente
+
   // CARREGA OS CAMPOS PARA O GRID
   Memo2.Lines.Clear;
   BufDataset1.Clear;

@@ -52,6 +52,9 @@ class AtsCliente:
             cliente['codcliente'] = cli.codcliente
             cliente['nomecliente'] = cli.nomecliente
             cliente['razaosocial'] = cli.razaosocial
+            cliente['cnpj'] = ''
+            if cli.cnpj:
+                cliente['cnpj'] = cli.cnpj
             x = cli.razaosocial
             print ('Cliente: %s' %(cli.nomecliente))
             lista.append(cliente)
@@ -66,7 +69,7 @@ class AtsCliente:
             codigo = dados['codcliente']
         return 'Cliente atualizado com sucesso'
 
-    def estrutura_cliente(self):
+    def cliente_tabela(self):
         # LEIO A TABELA INTEIR E CRIO UM JSON COM OS CAMPOS
         tabela = []
         for cli in Cliente.__table__.columns:
@@ -102,6 +105,13 @@ class AtsCliente:
             'titulo': 'Razão Social',
             'tipo': 'VARCHAR',
             'tam': '300',
+            }
+        tabela.append(campos)
+        campos = {
+            'campo': 'cnpj',
+            'titulo': 'CNPJ/CPF',
+            'tipo': 'VARCHAR',
+            'tam': '80',
             }
         tabela.append(campos)
         return jsonify(tabela)
