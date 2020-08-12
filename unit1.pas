@@ -9,11 +9,14 @@ uses
   DBGrids, fphttpclient, fpjson, jsonparser, memds, db, BufDataset;
 
 
+
 type
 
   { TForm1 }
 
   TForm1 = class(TForm)
+    BitBtn1: TBitBtn;
+    btnBuscaTudo1: TBitBtn;
     btnCadastroCliente: TBitBtn;
     btnBuscaTudo: TBitBtn;
     btnBuscaUmRegistro: TBitBtn;
@@ -33,6 +36,8 @@ type
     Label3: TLabel;
     Memo1: TMemo;
     Memo2: TMemo;
+    procedure BitBtn1Click(Sender: TObject);
+    procedure btnBuscaTudo1Click(Sender: TObject);
     procedure btnBuscaTudoClick(Sender: TObject);
     procedure btnBuscaUmRegistroClick(Sender: TObject);
     procedure btnCadastroClienteClick(Sender: TObject);
@@ -51,7 +56,7 @@ var
 
 implementation
 
-uses uClienteCadastro;
+uses uClienteCadastro, JsonTools;
 
 {$R *.lfm}
 
@@ -94,6 +99,72 @@ begin
       end;
       free;
     end;
+    BufDataSet1.SaveToFile('cliente.bds');
+  finally
+    l.Free;
+  end;
+end;
+
+procedure TForm1.BitBtn1Click(Sender: TObject);
+var
+  N: TJsonNode;
+  v : string;
+  C : TJsonNode;
+begin
+  N := TJsonNode.Create;
+  N.Value := Memo1.Text;
+
+  for C in N do
+  begin
+      v := C.Value;
+      v := C.Find('codcliente').Value;
+  end;
+  //v := N.Value;
+
+end;
+
+procedure TForm1.btnBuscaTudo1Click(Sender: TObject);
+var
+  N: TJsonNode;
+  v : string;
+  C : TJsonNode;
+  L: TStringList;
+  field_name, field_value: String;
+begin
+  // Busca usando o JsonTools
+  btnEstruturaGrid.Click;
+  try
+    L := TStringList.Create;
+    with tfphttpclient.create(nil) do
+    begin
+      // BUSCA OS CLIENTE - else do hello.py
+      Get(edtcaminho.Text, L);
+      free;
+    end;
+    Memo1.Lines.Assign(L);
+    N := TJsonNode.Create;
+    N.Value := Memo1.Text;
+
+    for C in N do
+    begin
+      BufDataset1.Append;
+      field_name := C.Find('codcliente').Name;
+      field_value := C.Find('codcliente').Value;
+      edtcodcliente.Text := field_value;
+      BufDataset1.FieldByName(field_name).Value := field_value;
+      field_name := C.Find('nomecliente').Name;
+      field_value := C.Find('nomecliente').AsString;
+      edtnomecliente.Text := field_value;
+      BufDataset1.FieldByName(field_name).Value := field_value;
+      field_name := C.Find('razaosocial').Name;
+      field_value := C.Find('razaosocial').AsString;
+      BufDataset1.FieldByName(field_name).Value := field_value;
+      field_name := C.Find('cnpj').Name;
+      field_value := C.Find('cnpj').AsString;
+      BufDataset1.FieldByName(field_name).Value := field_value;
+    end;
+    BufDataset1.Post;
+
     BufDataSet1.SaveToFile('cliente.bds');
   finally
     l.Free;

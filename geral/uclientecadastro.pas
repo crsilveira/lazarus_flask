@@ -28,7 +28,7 @@ type
     ComboBox4: TComboBox;
     ComboBox5: TComboBox;
     ComboBox6: TComboBox;
-    dsCli: TDataSource;
+    ds: TDataSource;
     edtcodcliente: TDBEdit;
     DBEdit10: TDBEdit;
     DBEdit11: TDBEdit;
@@ -129,7 +129,7 @@ type
     TabSheet6: TTabSheet;
     procedure btnGravar2Click(Sender: TObject);
     procedure btnGravar3Click(Sender: TObject);
-    procedure dsCliDataChange(Sender: TObject; Field: TField);
+    procedure dsDataChange(Sender: TObject; Field: TField);
     procedure FormShow(Sender: TObject);
     procedure PageControl1Change(Sender: TObject);
     procedure Panel2Click(Sender: TObject);
@@ -182,7 +182,7 @@ var
   postJson: TJSONObject;
   dadosJson: TJSONObject;
   responseData: String;
-  i  : integer;
+  i, k  : integer;
   c: String;
   t: String;
   s: String;
@@ -248,18 +248,37 @@ begin
             Break;
          end;
     }
-    edtnomecliente.DataSource := dsCli;
+    {
+    edtnomecliente.DataSource := ds;
     edtnomecliente.DataField := 'nomecliente';
-    edtrazaosocial.DataSource := dsCli;
+    edtrazaosocial.DataSource := ds;
     edtrazaosocial.DataField := 'razaosocial';
-    edtcodcliente.DataSource := dsCli;
+    edtcodcliente.DataSource := ds;
     edtcodcliente.DataField := 'codcliente';
-    edtcnpj.DataSource := dsCli;
-    edtcnpj.DataField := 'cnpj';
+    edtcnpj.DataSource := ds;
+    edtcnpj.DataField := 'cnpj';}
+    i := BufDataset1.FieldDefs.Count;
+    //c := BufDataset1.FieldDefs.Items[0].DisplayName;
+    c := BufDataset1.FieldDefs.Items[0].Name;
+    for i:=0 to BufDataset1.FieldDefs.Count-1 do
+    begin
+      c := BufDataset1.FieldDefs.Items[i].Name;
+      for k:=0 to ComponentCount-1 do
+       if (Components[k] is TDBEdit) then
+         if (Components[k] as TDBEdit).Name = 'edt' + c then
+         begin
+            //field_value := jItem.FindPath(field_name).AsString;
+            (Components[k] as TDBEdit).DataSource := ds;
+            (Components[k] as TDBEdit).DataField := c;
+            Break;
+         end;
+    end;
+
+
     BufDataset1.Open;
 end;
 
-procedure TfClienteCadastro.dsCliDataChange(Sender: TObject; Field: TField);
+procedure TfClienteCadastro.dsDataChange(Sender: TObject; Field: TField);
 begin
 
 end;

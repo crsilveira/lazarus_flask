@@ -36,7 +36,7 @@
         <PackageName Value="LCL"/>
       </Item4>
     </RequiredPackages>
-    <Units Count="4">
+    <Units Count="5">
       <Unit0>
         <Filename Value="project1.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -65,6 +65,11 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="uClienteCadastro"/>
       </Unit3>
+      <Unit4>
+        <Filename Value="../../python/flask/atsadmin/jsontools.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="JsonTools"/>
+      </Unit4>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
@@ -75,7 +80,7 @@
     <SearchPaths>
       <IncludeFiles Value="$(ProjOutDir)"/>
       <Libraries Value="../datamodule"/>
-      <OtherUnitFiles Value="../datamodule;geral"/>
+      <OtherUnitFiles Value="../datamodule;geral;../../python/flask/atsadmin"/>
       <UnitOutputDirectory Value="lib/$(TargetCPU)-$(TargetOS)"/>
     </SearchPaths>
     <Linking>

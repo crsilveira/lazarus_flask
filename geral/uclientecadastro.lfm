@@ -2124,9 +2124,9 @@ object fClienteCadastro: TfClienteCadastro
     left = 336
     top = 8
   end
-  object dsCli: TDataSource
+  object ds: TDataSource
     DataSet = BufDataset1
-    OnDataChange = dsCliDataChange
+    OnDataChange = dsDataChange
     left = 216
     top = 16
   end

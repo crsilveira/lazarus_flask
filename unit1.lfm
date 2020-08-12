@@ -9,9 +9,9 @@ object Form1: TForm1
   ClientWidth = 1027
   LCLVersion = '2.0.8.0'
   object btnBuscaTudo: TBitBtn
-    Left = 40
+    Left = 41
     Height = 30
-    Top = 59
+    Top = 40
     Width = 104
     Caption = 'Busca'
     OnClick = btnBuscaTudoClick
@@ -158,6 +158,24 @@ object Form1: TForm1
     Caption = 'Abrir Cadastro'
     OnClick = btnCadastroClienteClick
     TabOrder = 13
+  end
+  object BitBtn1: TBitBtn
+    Left = 770
+    Height = 30
+    Top = 25
+    Width = 174
+    Caption = 'Teste JsonTools'
+    OnClick = BitBtn1Click
+    TabOrder = 14
+  end
+  object btnBuscaTudo1: TBitBtn
+    Left = 41
+    Height = 30
+    Top = 67
+    Width = 104
+    Caption = 'Busca JsonTools'
+    OnClick = btnBuscaTudo1Click
+    TabOrder = 15
   end
   object DataSource1: TDataSource
     DataSet = BufDataset1
