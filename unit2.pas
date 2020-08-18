@@ -37,7 +37,15 @@ implementation
 
 procedure TForm2.FormShow(Sender: TObject);
 begin
-
+          {
+          try:
+            Cliente.update(dados)
+            con.commit()
+            con.close_all()
+        except:
+            con.close_all()
+            return 'Erro no sistema.'
+           }
 end;
 
 end.

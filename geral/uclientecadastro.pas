@@ -14,58 +14,58 @@ type
   { TfClienteCadastro }
 
   TfClienteCadastro = class(TForm)
-    BitBtn2: TBitBtn;
+    btnProcCidade: TBitBtn;
     btnCidade3: TButton;
     btnCidade4: TButton;
     btnGravar: TBitBtn;
-    btnGravar1: TBitBtn;
-    btnGravar2: TBitBtn;
-    btnGravar3: TBitBtn;
+    btnExcluir: TBitBtn;
+    btnProcurar: TBitBtn;
+    btnSair: TBitBtn;
     BufDataset1: TBufDataset;
-    ComboBox1: TComboBox;
-    ComboBox2: TComboBox;
-    ComboBox3: TComboBox;
-    ComboBox4: TComboBox;
-    ComboBox5: TComboBox;
-    ComboBox6: TComboBox;
+    edtcodfiscal: TComboBox;
+    edt_cfop: TComboBox;
+    edtregiao: TComboBox;
+    edtcodusuario: TComboBox;
+    edtcodtransp: TComboBox;
+    edtnomelista: TComboBox;
     ds: TDataSource;
     edtcodcliente: TDBEdit;
-    DBEdit10: TDBEdit;
-    DBEdit11: TDBEdit;
-    DBEdit12: TDBEdit;
-    DBEdit13: TDBEdit;
-    DBEdit14: TDBEdit;
-    DBEdit15: TDBEdit;
-    DBEdit16: TDBEdit;
-    DBEdit18: TDBEdit;
-    DBEdit19: TDBEdit;
-    DBEdit20: TDBEdit;
-    DBEdit21: TDBEdit;
-    DBEdit22: TDBEdit;
-    DBEdit23: TDBEdit;
+    edtcodlista: TDBEdit;
+    edtlimitecredito: TDBEdit;
+    edtprazorecebimento: TDBEdit;
+    edtdesconto: TDBEdit;
+    edtdadosadicionais: TDBEdit;
+    edtlogradouro: TDBEdit;
+    edtnumero: TDBEdit;
+    edtbairro: TDBEdit;
+    edtcomplemento: TDBEdit;
+    edtcidade: TDBEdit;
+    edtcep: TDBEdit;
+    edtcd_ibge: TDBEdit;
+    edtuf: TDBEdit;
     edtrazaosocial: TDBEdit;
     edtcnpj: TDBEdit;
-    DBEdit40: TDBEdit;
-    DBEdit41: TDBEdit;
-    DBEdit42: TDBEdit;
-    DBEdit43: TDBEdit;
-    DBEdit44: TDBEdit;
-    DBEdit45: TDBEdit;
-    DBEdit46: TDBEdit;
-    DBEdit47: TDBEdit;
-    DBEdit48: TDBEdit;
-    DBEdit49: TDBEdit;
-    DBEdit5: TDBEdit;
-    DBEdit50: TDBEdit;
-    DBEdit51: TDBEdit;
-    DBEdit52: TDBEdit;
-    DBEdit53: TDBEdit;
-    DBEdit54: TDBEdit;
-    DBEdit55: TDBEdit;
-    DBEdit6: TDBEdit;
-    DBEdit7: TDBEdit;
-    DBEdit8: TDBEdit;
-    DBEdit9: TDBEdit;
+    edtlogradouro2: TDBEdit;
+    edtbairro2: TDBEdit;
+    edtcidade2: TDBEdit;
+    edtcep2: TDBEdit;
+    edtcomplemento2: TDBEdit;
+    edtcd_ibge2: TDBEdit;
+    edtuf2: TDBEdit;
+    edtnumero2: TDBEdit;
+    edtlogradouro1: TDBEdit;
+    edtbairro1: TDBEdit;
+    edtinscestadual: TDBEdit;
+    edtcidade1: TDBEdit;
+    edtcep1: TDBEdit;
+    edtcomplemento1: TDBEdit;
+    edtcd_ibge1: TDBEdit;
+    edtuf1: TDBEdit;
+    edtnumero1: TDBEdit;
+    edtcontato: TDBEdit;
+    edttelefone: TDBEdit;
+    edttelefone1: TDBEdit;
+    edte_mail: TDBEdit;
     dsCliente: TDataSource;
     Label13: TLabel;
     Label14: TLabel;
@@ -121,14 +121,15 @@ type
     Panel3: TPanel;
     Panel4: TPanel;
     Panel5: TPanel;
-    RadioGroup1: TRadioGroup;
-    RadioGroup2: TRadioGroup;
-    RadioGroup3: TRadioGroup;
+    edttipofirma: TRadioGroup;
+    edttem_ie: TRadioGroup;
+    edtstatus: TRadioGroup;
     TabSheet1: TTabSheet;
     TabSheet3: TTabSheet;
     TabSheet6: TTabSheet;
-    procedure btnGravar2Click(Sender: TObject);
-    procedure btnGravar3Click(Sender: TObject);
+    procedure btnProcurarClick(Sender: TObject);
+    procedure btnSairClick(Sender: TObject);
+    procedure btnGravarClick(Sender: TObject);
     procedure dsDataChange(Sender: TObject; Field: TField);
     procedure FormShow(Sender: TObject);
     procedure PageControl1Change(Sender: TObject);
@@ -283,12 +284,69 @@ begin
 
 end;
 
-procedure TfClienteCadastro.btnGravar3Click(Sender: TObject);
+procedure TfClienteCadastro.btnSairClick(Sender: TObject);
 begin
   Close;
 end;
 
-procedure TfClienteCadastro.btnGravar2Click(Sender: TObject);
+procedure TfClienteCadastro.btnGravarClick(Sender: TObject);
+var i: Integer;
+  postJson: TJSONObject;
+  dadosJson: TJSONObject;
+  responseData: String;
+  comDados: String;
+  ver: string;
+begin
+  comDados := 'N';
+  postJson := TJSONObject.Create;
+  dadosJson := TJSONObject.Create;
+  BufDataset1.Post;
+  // gravando alteracoes ou inclusões
+  if edtcodcliente.Text = '0' then
+  begin
+    // inclusao
+    postJson.Add('title', 'Insert');
+    postJson.Add('body', 'Insert');
+    postJson.Add('cliente_insert', dadosJson);
+    postJson.Add('userId', 1);
+    for i:=0 to BufDataset1.FieldDefs.Count-1 do
+    begin
+      comDados := 'S';
+      ver := BufDataset1.FieldDefs.Items[i].Name;
+      ver := BufDataset1.Fields[i].Value;
+      dadosJson.Add(BufDataset1.FieldDefs.Items[i].Name, BufDataset1.Fields[i].Value);
+    end;
+  end
+  else begin
+    // atualizacao
+    postJson.Add('title', 'Update');
+    postJson.Add('body', 'Corpo Update');
+    postJson.Add('cliente_update', dadosJson);
+    postJson.Add('userId', 1);
+    for i:=0 to BufDataset1.FieldDefs.Count-1 do
+    begin
+      comDados := 'S';
+      ver := BufDataset1.FieldDefs.Items[i].Name;
+      ver := BufDataset1.Fields[i].Value;
+      dadosJson.Add(BufDataset1.FieldDefs.Items[i].Name, BufDataset1.Fields[i].Value);
+    end;
+  end;
+  if (comDados = 'S') then
+    begin
+
+      With TFPHttpClient.Create(Nil) do
+        try
+          AddHeader('Content-Type', 'application/json');
+          RequestBody := TStringStream.Create(postJson.AsJSON);
+          responseData := Post(caminho_server);
+          ShowMessage(responseData);
+        finally
+         Free;
+        end;
+    end;
+end;
+
+procedure TfClienteCadastro.btnProcurarClick(Sender: TObject);
 begin
   Close;
 end;

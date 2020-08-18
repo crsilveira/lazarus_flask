@@ -1,14 +1,14 @@
 object fClienteCadastro: TfClienteCadastro
-  Left = 296
+  Left = 468
   Height = 675
-  Top = 25
+  Top = 8
   Width = 814
   Caption = 'Cadastro de Clientes'
   ClientHeight = 675
   ClientWidth = 814
   OnShow = FormShow
   Position = poDesktopCenter
-  LCLVersion = '2.0.8.0'
+  LCLVersion = '2.0.4.0'
   object Panel1: TPanel
     Left = 8
     Height = 64
@@ -21,7 +21,7 @@ object fClienteCadastro: TfClienteCadastro
     TabOrder = 0
     object edtcodcliente: TDBEdit
       Left = 25
-      Height = 26
+      Height = 23
       Top = 24
       Width = 72
       DataField = 'CODCLIENTE'
@@ -33,7 +33,7 @@ object fClienteCadastro: TfClienteCadastro
       MaxLength = 0
       TabOrder = 0
     end
-    object RadioGroup3: TRadioGroup
+    object edtstatus: TRadioGroup
       Left = 644
       Height = 40
       Top = 16
@@ -46,7 +46,7 @@ object fClienteCadastro: TfClienteCadastro
       ChildSizing.ShrinkVertical = crsScaleChilds
       ChildSizing.Layout = cclLeftToRightThenTopToBottom
       ChildSizing.ControlsPerLine = 2
-      ClientHeight = 36
+      ClientHeight = 20
       ClientWidth = 144
       Columns = 2
       Font.CharSet = ANSI_CHARSET
@@ -68,7 +68,7 @@ object fClienteCadastro: TfClienteCadastro
     Left = 320
     Height = 15
     Top = 80
-    Width = 23
+    Width = 20
     Caption = 'CEP'
     Font.CharSet = ANSI_CHARSET
     Font.Color = clBlack
@@ -93,7 +93,7 @@ object fClienteCadastro: TfClienteCadastro
     OnClick = Panel2Click
     object edtrazaosocial: TDBEdit
       Left = 17
-      Height = 26
+      Height = 23
       Top = 56
       Width = 775
       DataField = 'RAZAOSOCIAL'
@@ -122,13 +122,13 @@ object fClienteCadastro: TfClienteCadastro
       OnChange = PageControl1Change
       object TabSheet1: TTabSheet
         Caption = 'Endereço Principal'
-        ClientHeight = 135
-        ClientWidth = 773
+        ClientHeight = 138
+        ClientWidth = 769
         object Label13: TLabel
           Left = 8
           Height = 15
           Top = 0
-          Width = 69
+          Width = 64
           Caption = 'Logradouro'
           Font.CharSet = ANSI_CHARSET
           Font.Color = clBlack
@@ -140,9 +140,9 @@ object fClienteCadastro: TfClienteCadastro
           ParentColor = False
           ParentFont = False
         end
-        object DBEdit15: TDBEdit
+        object edtlogradouro: TDBEdit
           Left = 8
-          Height = 26
+          Height = 23
           Top = 16
           Width = 632
           DataField = 'DESCONTO'
@@ -152,9 +152,9 @@ object fClienteCadastro: TfClienteCadastro
           MaxLength = 0
           TabOrder = 0
         end
-        object DBEdit18: TDBEdit
+        object edtbairro: TDBEdit
           Left = 8
-          Height = 26
+          Height = 23
           Top = 56
           Width = 376
           DataField = 'DESCONTO'
@@ -168,7 +168,7 @@ object fClienteCadastro: TfClienteCadastro
           Left = 8
           Height = 15
           Top = 40
-          Width = 36
+          Width = 34
           Caption = 'Bairro'
           Font.CharSet = ANSI_CHARSET
           Font.Color = clBlack
@@ -184,7 +184,7 @@ object fClienteCadastro: TfClienteCadastro
           Left = 8
           Height = 15
           Top = 80
-          Width = 42
+          Width = 37
           Caption = 'Cidade'
           Font.CharSet = ANSI_CHARSET
           Font.Color = clBlack
@@ -196,9 +196,9 @@ object fClienteCadastro: TfClienteCadastro
           ParentColor = False
           ParentFont = False
         end
-        object DBEdit20: TDBEdit
+        object edtcidade: TDBEdit
           Left = 40
-          Height = 26
+          Height = 23
           Top = 93
           Width = 336
           DataField = 'DESCONTO'
@@ -208,9 +208,9 @@ object fClienteCadastro: TfClienteCadastro
           MaxLength = 0
           TabOrder = 2
         end
-        object DBEdit21: TDBEdit
+        object edtcep: TDBEdit
           Left = 396
-          Height = 26
+          Height = 23
           Top = 93
           Width = 112
           DataField = 'DESCONTO'
@@ -224,7 +224,7 @@ object fClienteCadastro: TfClienteCadastro
           Left = 396
           Height = 15
           Top = 80
-          Width = 23
+          Width = 20
           Caption = 'CEP'
           Font.CharSet = ANSI_CHARSET
           Font.Color = clBlack
@@ -240,7 +240,7 @@ object fClienteCadastro: TfClienteCadastro
           Left = 396
           Height = 15
           Top = 40
-          Width = 85
+          Width = 79
           Caption = 'Complemento'
           Font.CharSet = ANSI_CHARSET
           Font.Color = clBlack
@@ -252,9 +252,9 @@ object fClienteCadastro: TfClienteCadastro
           ParentColor = False
           ParentFont = False
         end
-        object DBEdit19: TDBEdit
+        object edtcomplemento: TDBEdit
           Left = 396
-          Height = 26
+          Height = 23
           Top = 56
           Width = 344
           DataField = 'DESCONTO'
@@ -263,9 +263,9 @@ object fClienteCadastro: TfClienteCadastro
           MaxLength = 0
           TabOrder = 4
         end
-        object DBEdit22: TDBEdit
+        object edtcd_ibge: TDBEdit
           Left = 520
-          Height = 26
+          Height = 23
           Top = 93
           Width = 128
           DataField = 'DESCONTO'
@@ -279,7 +279,7 @@ object fClienteCadastro: TfClienteCadastro
           Left = 520
           Height = 15
           Top = 80
-          Width = 55
+          Width = 51
           Caption = 'Cód IBGE'
           Font.CharSet = ANSI_CHARSET
           Font.Color = clBlack
@@ -291,9 +291,9 @@ object fClienteCadastro: TfClienteCadastro
           ParentColor = False
           ParentFont = False
         end
-        object DBEdit23: TDBEdit
+        object edtuf: TDBEdit
           Left = 652
-          Height = 26
+          Height = 23
           Top = 93
           Width = 88
           DataField = 'DESCONTO'
@@ -307,7 +307,7 @@ object fClienteCadastro: TfClienteCadastro
           Left = 656
           Height = 15
           Top = 80
-          Width = 16
+          Width = 15
           Caption = 'UF'
           Font.CharSet = ANSI_CHARSET
           Font.Color = clBlack
@@ -319,9 +319,9 @@ object fClienteCadastro: TfClienteCadastro
           ParentColor = False
           ParentFont = False
         end
-        object DBEdit16: TDBEdit
+        object edtnumero: TDBEdit
           Left = 652
-          Height = 26
+          Height = 23
           Top = 16
           Width = 88
           DataField = 'DESCONTO'
@@ -335,7 +335,7 @@ object fClienteCadastro: TfClienteCadastro
           Left = 656
           Height = 15
           Top = 0
-          Width = 49
+          Width = 46
           Caption = 'Número'
           Font.CharSet = ANSI_CHARSET
           Font.Color = clBlack
@@ -347,7 +347,7 @@ object fClienteCadastro: TfClienteCadastro
           ParentColor = False
           ParentFont = False
         end
-        object BitBtn2: TBitBtn
+        object btnProcCidade: TBitBtn
           Left = 8
           Height = 27
           Top = 93
@@ -489,8 +489,8 @@ object fClienteCadastro: TfClienteCadastro
       end
       object TabSheet6: TTabSheet
         Caption = 'Endereço Cobrança'
-        ClientHeight = 135
-        ClientWidth = 773
+        ClientHeight = 138
+        ClientWidth = 769
         object Label56: TLabel
           Left = 8
           Height = 15
@@ -507,7 +507,7 @@ object fClienteCadastro: TfClienteCadastro
           ParentColor = False
           ParentFont = False
         end
-        object DBEdit48: TDBEdit
+        object edtlogradouro1: TDBEdit
           Left = 8
           Height = 23
           Top = 16
@@ -519,7 +519,7 @@ object fClienteCadastro: TfClienteCadastro
           MaxLength = 0
           TabOrder = 0
         end
-        object DBEdit49: TDBEdit
+        object edtbairro1: TDBEdit
           Left = 8
           Height = 23
           Top = 56
@@ -571,7 +571,7 @@ object fClienteCadastro: TfClienteCadastro
           ParentColor = False
           ParentFont = False
         end
-        object DBEdit50: TDBEdit
+        object edtcidade1: TDBEdit
           Left = 48
           Height = 23
           Top = 93
@@ -583,7 +583,7 @@ object fClienteCadastro: TfClienteCadastro
           MaxLength = 0
           TabOrder = 3
         end
-        object DBEdit51: TDBEdit
+        object edtcep1: TDBEdit
           Left = 396
           Height = 23
           Top = 93
@@ -627,7 +627,7 @@ object fClienteCadastro: TfClienteCadastro
           ParentColor = False
           ParentFont = False
         end
-        object DBEdit52: TDBEdit
+        object edtcomplemento1: TDBEdit
           Left = 396
           Height = 23
           Top = 56
@@ -638,7 +638,7 @@ object fClienteCadastro: TfClienteCadastro
           MaxLength = 0
           TabOrder = 5
         end
-        object DBEdit53: TDBEdit
+        object edtcd_ibge1: TDBEdit
           Left = 520
           Height = 23
           Top = 93
@@ -666,7 +666,7 @@ object fClienteCadastro: TfClienteCadastro
           ParentColor = False
           ParentFont = False
         end
-        object DBEdit54: TDBEdit
+        object edtuf1: TDBEdit
           Left = 652
           Height = 23
           Top = 93
@@ -694,7 +694,7 @@ object fClienteCadastro: TfClienteCadastro
           ParentColor = False
           ParentFont = False
         end
-        object DBEdit55: TDBEdit
+        object edtnumero1: TDBEdit
           Left = 652
           Height = 23
           Top = 16
@@ -725,8 +725,8 @@ object fClienteCadastro: TfClienteCadastro
       end
       object TabSheet3: TTabSheet
         Caption = 'Endereço Entrega'
-        ClientHeight = 135
-        ClientWidth = 773
+        ClientHeight = 138
+        ClientWidth = 769
         object Label46: TLabel
           Left = 8
           Height = 15
@@ -743,7 +743,7 @@ object fClienteCadastro: TfClienteCadastro
           ParentColor = False
           ParentFont = False
         end
-        object DBEdit40: TDBEdit
+        object edtlogradouro2: TDBEdit
           Left = 8
           Height = 23
           Top = 16
@@ -755,7 +755,7 @@ object fClienteCadastro: TfClienteCadastro
           MaxLength = 0
           TabOrder = 0
         end
-        object DBEdit41: TDBEdit
+        object edtbairro2: TDBEdit
           Left = 8
           Height = 23
           Top = 56
@@ -807,7 +807,7 @@ object fClienteCadastro: TfClienteCadastro
           ParentColor = False
           ParentFont = False
         end
-        object DBEdit42: TDBEdit
+        object edtcidade2: TDBEdit
           Left = 48
           Height = 23
           Top = 93
@@ -819,7 +819,7 @@ object fClienteCadastro: TfClienteCadastro
           MaxLength = 0
           TabOrder = 3
         end
-        object DBEdit43: TDBEdit
+        object edtcep2: TDBEdit
           Left = 396
           Height = 23
           Top = 93
@@ -863,7 +863,7 @@ object fClienteCadastro: TfClienteCadastro
           ParentColor = False
           ParentFont = False
         end
-        object DBEdit44: TDBEdit
+        object edtcomplemento2: TDBEdit
           Left = 396
           Height = 23
           Top = 56
@@ -874,7 +874,7 @@ object fClienteCadastro: TfClienteCadastro
           MaxLength = 0
           TabOrder = 5
         end
-        object DBEdit45: TDBEdit
+        object edtcd_ibge2: TDBEdit
           Left = 520
           Height = 23
           Top = 93
@@ -902,7 +902,7 @@ object fClienteCadastro: TfClienteCadastro
           ParentColor = False
           ParentFont = False
         end
-        object DBEdit46: TDBEdit
+        object edtuf2: TDBEdit
           Left = 652
           Height = 23
           Top = 93
@@ -930,7 +930,7 @@ object fClienteCadastro: TfClienteCadastro
           ParentColor = False
           ParentFont = False
         end
-        object DBEdit47: TDBEdit
+        object edtnumero2: TDBEdit
           Left = 652
           Height = 23
           Top = 16
@@ -966,8 +966,8 @@ object fClienteCadastro: TfClienteCadastro
       Top = 95
       Width = 392
       BorderStyle = bsSingle
-      ClientHeight = 287
-      ClientWidth = 390
+      ClientHeight = 285
+      ClientWidth = 388
       Color = clWhite
       ParentBackground = False
       ParentBidiMode = False
@@ -977,7 +977,7 @@ object fClienteCadastro: TfClienteCadastro
         Left = 16
         Height = 15
         Top = 8
-        Width = 51
+        Width = 50
         Caption = 'Telefone'
         Font.CharSet = ANSI_CHARSET
         Font.Color = clBlack
@@ -989,9 +989,9 @@ object fClienteCadastro: TfClienteCadastro
         ParentColor = False
         ParentFont = False
       end
-      object DBEdit8: TDBEdit
+      object edttelefone1: TDBEdit
         Left = 192
-        Height = 26
+        Height = 23
         Top = 24
         Width = 172
         DataSource = dsCliente
@@ -999,9 +999,9 @@ object fClienteCadastro: TfClienteCadastro
         MaxLength = 0
         TabOrder = 0
       end
-      object DBEdit9: TDBEdit
+      object edte_mail: TDBEdit
         Left = 16
-        Height = 26
+        Height = 23
         Top = 64
         Width = 348
         DataSource = dsCliente
@@ -1013,7 +1013,7 @@ object fClienteCadastro: TfClienteCadastro
         Left = 16
         Height = 15
         Top = 48
-        Width = 34
+        Width = 29
         Caption = 'Email'
         Font.CharSet = ANSI_CHARSET
         Font.Color = clBlack
@@ -1029,7 +1029,7 @@ object fClienteCadastro: TfClienteCadastro
         Left = 192
         Height = 15
         Top = 8
-        Width = 43
+        Width = 38
         Caption = 'Celular'
         Font.CharSet = ANSI_CHARSET
         Font.Color = clBlack
@@ -1041,9 +1041,9 @@ object fClienteCadastro: TfClienteCadastro
         ParentColor = False
         ParentFont = False
       end
-      object DBEdit7: TDBEdit
+      object edttelefone: TDBEdit
         Left = 16
-        Height = 26
+        Height = 23
         Top = 24
         Width = 172
         DataSource = dsCliente
@@ -1055,7 +1055,7 @@ object fClienteCadastro: TfClienteCadastro
         Left = 16
         Height = 15
         Top = 88
-        Width = 58
+        Width = 55
         Caption = 'Vendedor'
         Font.CharSet = ANSI_CHARSET
         Font.Color = clBlack
@@ -1067,19 +1067,19 @@ object fClienteCadastro: TfClienteCadastro
         ParentColor = False
         ParentFont = False
       end
-      object ComboBox3: TComboBox
+      object edtregiao: TComboBox
         Left = 192
-        Height = 26
+        Height = 23
         Top = 104
         Width = 172
-        ItemHeight = 0
+        ItemHeight = 15
         TabOrder = 3
       end
       object Label30: TLabel
         Left = 192
         Height = 15
         Top = 88
-        Width = 41
+        Width = 38
         Caption = 'Região'
         Font.CharSet = ANSI_CHARSET
         Font.Color = clBlack
@@ -1091,27 +1091,27 @@ object fClienteCadastro: TfClienteCadastro
         ParentColor = False
         ParentFont = False
       end
-      object ComboBox4: TComboBox
+      object edtcodusuario: TComboBox
         Left = 16
-        Height = 26
+        Height = 23
         Top = 104
         Width = 172
-        ItemHeight = 0
+        ItemHeight = 15
         TabOrder = 4
       end
-      object ComboBox5: TComboBox
+      object edtcodtransp: TComboBox
         Left = 16
-        Height = 26
+        Height = 23
         Top = 144
         Width = 348
-        ItemHeight = 0
+        ItemHeight = 15
         TabOrder = 5
       end
       object Label31: TLabel
         Left = 16
         Height = 15
         Top = 128
-        Width = 91
+        Width = 85
         Caption = 'Transportadora'
         Font.CharSet = ANSI_CHARSET
         Font.Color = clBlack
@@ -1123,17 +1123,17 @@ object fClienteCadastro: TfClienteCadastro
         ParentColor = False
         ParentFont = False
       end
-      object ComboBox6: TComboBox
+      object edtnomelista: TComboBox
         Left = 72
-        Height = 26
+        Height = 23
         Top = 184
         Width = 292
-        ItemHeight = 0
+        ItemHeight = 15
         TabOrder = 6
       end
-      object DBEdit10: TDBEdit
+      object edtcodlista: TDBEdit
         Left = 16
-        Height = 26
+        Height = 23
         Top = 184
         Width = 48
         DataSource = dsCliente
@@ -1145,7 +1145,7 @@ object fClienteCadastro: TfClienteCadastro
         Left = 16
         Height = 15
         Top = 168
-        Width = 23
+        Width = 21
         Caption = 'Cód'
         Font.CharSet = ANSI_CHARSET
         Font.Color = clBlack
@@ -1161,7 +1161,7 @@ object fClienteCadastro: TfClienteCadastro
         Left = 72
         Height = 15
         Top = 168
-        Width = 142
+        Width = 132
         Caption = 'Lista de Preço de Venda'
         Font.CharSet = ANSI_CHARSET
         Font.Color = clBlack
@@ -1173,9 +1173,9 @@ object fClienteCadastro: TfClienteCadastro
         ParentColor = False
         ParentFont = False
       end
-      object DBEdit14: TDBEdit
+      object edtdadosadicionais: TDBEdit
         Left = 16
-        Height = 26
+        Height = 23
         Top = 224
         Width = 348
         DataSource = dsCliente
@@ -1187,7 +1187,7 @@ object fClienteCadastro: TfClienteCadastro
         Left = 16
         Height = 15
         Top = 208
-        Width = 102
+        Width = 92
         Caption = 'Dados Adicionais'
         Font.CharSet = ANSI_CHARSET
         Font.Color = clBlack
@@ -1206,12 +1206,12 @@ object fClienteCadastro: TfClienteCadastro
       Top = 95
       Width = 385
       BorderStyle = bsSingle
-      ClientHeight = 287
-      ClientWidth = 383
+      ClientHeight = 285
+      ClientWidth = 381
       Color = clWhite
       ParentColor = False
       TabOrder = 3
-      object RadioGroup1: TRadioGroup
+      object edttipofirma: TRadioGroup
         Left = 5
         Height = 40
         Top = 8
@@ -1225,7 +1225,7 @@ object fClienteCadastro: TfClienteCadastro
         ChildSizing.ShrinkVertical = crsScaleChilds
         ChildSizing.Layout = cclLeftToRightThenTopToBottom
         ChildSizing.ControlsPerLine = 2
-        ClientHeight = 21
+        ClientHeight = 20
         ClientWidth = 166
         Columns = 2
         Font.CharSet = ANSI_CHARSET
@@ -1242,7 +1242,7 @@ object fClienteCadastro: TfClienteCadastro
         ParentFont = False
         TabOrder = 0
       end
-      object RadioGroup2: TRadioGroup
+      object edttem_ie: TRadioGroup
         Left = 186
         Height = 40
         Top = 8
@@ -1256,7 +1256,7 @@ object fClienteCadastro: TfClienteCadastro
         ChildSizing.ShrinkVertical = crsScaleChilds
         ChildSizing.Layout = cclLeftToRightThenTopToBottom
         ChildSizing.ControlsPerLine = 2
-        ClientHeight = 21
+        ClientHeight = 20
         ClientWidth = 166
         Color = clWhite
         Columns = 2
@@ -1279,7 +1279,7 @@ object fClienteCadastro: TfClienteCadastro
         Left = 8
         Height = 15
         Top = 88
-        Width = 109
+        Width = 97
         Caption = 'Inscrição Estadual'
         Font.CharSet = ANSI_CHARSET
         Font.Color = clBlack
@@ -1291,9 +1291,9 @@ object fClienteCadastro: TfClienteCadastro
         ParentColor = False
         ParentFont = False
       end
-      object DBEdit5: TDBEdit
+      object edtinscestadual: TDBEdit
         Left = 8
-        Height = 26
+        Height = 23
         Top = 104
         Width = 348
         DataField = 'INSCESTADUAL'
@@ -1307,7 +1307,7 @@ object fClienteCadastro: TfClienteCadastro
         Left = 8
         Height = 15
         Top = 128
-        Width = 63
+        Width = 56
         Caption = 'Tipo Fiscal'
         Font.CharSet = ANSI_CHARSET
         Font.Color = clBlack
@@ -1319,13 +1319,13 @@ object fClienteCadastro: TfClienteCadastro
         ParentColor = False
         ParentFont = False
       end
-      object ComboBox1: TComboBox
+      object edtcodfiscal: TComboBox
         Left = 8
-        Height = 26
+        Height = 23
         Top = 144
         Width = 166
         Color = 16447714
-        ItemHeight = 0
+        ItemHeight = 15
         Items.Strings = (
           'Consumidor Final'
           'Fisico Simples'
@@ -1341,7 +1341,7 @@ object fClienteCadastro: TfClienteCadastro
         Left = 192
         Height = 15
         Top = 128
-        Width = 74
+        Width = 67
         Caption = 'CFOP Venda'
         Font.CharSet = ANSI_CHARSET
         Font.Color = clBlack
@@ -1353,19 +1353,19 @@ object fClienteCadastro: TfClienteCadastro
         ParentColor = False
         ParentFont = False
       end
-      object ComboBox2: TComboBox
+      object edt_cfop: TComboBox
         Left = 190
-        Height = 26
+        Height = 23
         Top = 144
         Width = 166
-        ItemHeight = 0
+        ItemHeight = 15
         TabOrder = 4
       end
       object Label43: TLabel
         Left = 8
         Height = 15
         Top = 48
-        Width = 64
+        Width = 59
         Caption = 'CNPJ / CPF'
         Font.CharSet = ANSI_CHARSET
         Font.Color = clBlack
@@ -1379,7 +1379,7 @@ object fClienteCadastro: TfClienteCadastro
       end
       object edtcnpj: TDBEdit
         Left = 8
-        Height = 26
+        Height = 23
         Top = 64
         Width = 348
         DataField = 'CNPJ'
@@ -1389,9 +1389,9 @@ object fClienteCadastro: TfClienteCadastro
         MaxLength = 72
         TabOrder = 5
       end
-      object DBEdit12: TDBEdit
+      object edtprazorecebimento: TDBEdit
         Left = 8
-        Height = 26
+        Height = 23
         Top = 184
         Width = 166
         DataField = 'LIMITECREDITO'
@@ -1400,9 +1400,9 @@ object fClienteCadastro: TfClienteCadastro
         MaxLength = 0
         TabOrder = 6
       end
-      object DBEdit13: TDBEdit
+      object edtdesconto: TDBEdit
         Left = 192
-        Height = 26
+        Height = 23
         Top = 184
         Width = 166
         DataField = 'DESCONTO'
@@ -1415,7 +1415,7 @@ object fClienteCadastro: TfClienteCadastro
         Left = 192
         Height = 15
         Top = 168
-        Width = 69
+        Width = 66
         Caption = 'Desconto %'
         Font.CharSet = ANSI_CHARSET
         Font.Color = clBlack
@@ -1427,9 +1427,9 @@ object fClienteCadastro: TfClienteCadastro
         ParentColor = False
         ParentFont = False
       end
-      object DBEdit11: TDBEdit
+      object edtlimitecredito: TDBEdit
         Left = 5
-        Height = 26
+        Height = 23
         Top = 224
         Width = 169
         DataField = 'LIMITECREDITO'
@@ -1442,7 +1442,7 @@ object fClienteCadastro: TfClienteCadastro
         Left = 8
         Height = 15
         Top = 168
-        Width = 72
+        Width = 68
         Caption = 'Vencimento'
         Font.CharSet = ANSI_CHARSET
         Font.Color = clBlack
@@ -1458,7 +1458,7 @@ object fClienteCadastro: TfClienteCadastro
         Left = 8
         Height = 15
         Top = 208
-        Width = 86
+        Width = 79
         Caption = 'Limite Crédito'
         Font.CharSet = ANSI_CHARSET
         Font.Color = clBlack
@@ -1470,9 +1470,9 @@ object fClienteCadastro: TfClienteCadastro
         ParentColor = False
         ParentFont = False
       end
-      object DBEdit6: TDBEdit
+      object edtcontato: TDBEdit
         Left = 192
-        Height = 26
+        Height = 23
         Hint = 'CONTATO'
         Top = 224
         Width = 164
@@ -1488,7 +1488,7 @@ object fClienteCadastro: TfClienteCadastro
         Left = 192
         Height = 15
         Top = 208
-        Width = 47
+        Width = 44
         Caption = 'Contato'
         Font.CharSet = ANSI_CHARSET
         Font.Color = clBlack
@@ -1520,7 +1520,7 @@ object fClienteCadastro: TfClienteCadastro
       Left = 15
       Height = 15
       Top = 0
-      Width = 36
+      Width = 34
       Caption = 'Nome'
       Font.CharSet = ANSI_CHARSET
       Font.Color = clBlack
@@ -1534,7 +1534,7 @@ object fClienteCadastro: TfClienteCadastro
     end
     object edtnomecliente: TDBEdit
       Left = 15
-      Height = 26
+      Height = 23
       Top = 16
       Width = 777
       HelpType = htKeyword
@@ -1549,7 +1549,7 @@ object fClienteCadastro: TfClienteCadastro
       Left = 17
       Height = 15
       Top = 40
-      Width = 73
+      Width = 68
       Caption = 'Razão Social'
       Font.CharSet = ANSI_CHARSET
       Font.Color = clBlack
@@ -1569,7 +1569,7 @@ object fClienteCadastro: TfClienteCadastro
       ClientHeight = 47
       ClientWidth = 786
       TabOrder = 5
-      object btnGravar3: TBitBtn
+      object btnSair: TBitBtn
         Left = 669
         Height = 38
         Top = 8
@@ -1682,11 +1682,11 @@ object fClienteCadastro: TfClienteCadastro
           C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0
           C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0
         }
-        OnClick = btnGravar3Click
+        OnClick = btnSairClick
         ParentFont = False
         TabOrder = 0
       end
-      object btnGravar2: TBitBtn
+      object btnProcurar: TBitBtn
         Left = 255
         Height = 38
         Top = 8
@@ -1831,11 +1831,11 @@ object fClienteCadastro: TfClienteCadastro
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000
         }
-        OnClick = btnGravar2Click
+        OnClick = btnProcurarClick
         ParentFont = False
         TabOrder = 1
       end
-      object btnGravar1: TBitBtn
+      object btnExcluir: TBitBtn
         Left = 135
         Height = 38
         Top = 8
@@ -2078,6 +2078,7 @@ object fClienteCadastro: TfClienteCadastro
           FAB3FAFAFAB3FAFAFAB3DBC79FB3B58A30B3C59634ABD8A43972AC822D120000
           0000000000000000000000000000000000000000000000000000
         }
+        OnClick = btnGravarClick
         ParentFont = False
         TabOrder = 3
       end
@@ -2087,7 +2088,7 @@ object fClienteCadastro: TfClienteCadastro
     Left = 568
     Height = 15
     Top = 80
-    Width = 16
+    Width = 15
     Caption = 'UF'
     Font.CharSet = ANSI_CHARSET
     Font.Color = clBlack
@@ -2103,7 +2104,7 @@ object fClienteCadastro: TfClienteCadastro
     Left = 584
     Height = 15
     Top = 0
-    Width = 49
+    Width = 46
     Caption = 'Número'
     Font.CharSet = ANSI_CHARSET
     Font.Color = clBlack

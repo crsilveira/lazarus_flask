@@ -8,3 +8,5 @@ lib/
 backup/
 *.pyc
 *.bds
+geral/uclientecadastro2.lfm
+geral/uclientecadastro2.pas

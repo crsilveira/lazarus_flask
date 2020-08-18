@@ -10,7 +10,7 @@ object Form2: TForm2
   LCLVersion = '2.0.8.0'
   object edtcodcliente: TEdit
     Left = 57
-    Height = 27
+    Height = 26
     Top = 55
     Width = 72
     TabOrder = 0
@@ -18,7 +18,7 @@ object Form2: TForm2
   end
   object edtnomecliente: TEdit
     Left = 57
-    Height = 27
+    Height = 26
     Top = 88
     Width = 535
     TabOrder = 1
@@ -26,7 +26,7 @@ object Form2: TForm2
   end
   object edtrazaosocial: TEdit
     Left = 57
-    Height = 27
+    Height = 26
     Top = 120
     Width = 535
     TabOrder = 2
@@ -34,7 +34,7 @@ object Form2: TForm2
   end
   object edtcnpj: TEdit
     Left = 288
-    Height = 27
+    Height = 26
     Top = 55
     Width = 160
     TabOrder = 3
