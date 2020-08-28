@@ -18,9 +18,9 @@ object Form1: TForm1
     TabOrder = 0
   end
   object Memo1: TMemo
-    Left = 40
+    Left = 41
     Height = 288
-    Top = 144
+    Top = 160
     Width = 472
     Lines.Strings = (
       'Memo1'
@@ -69,9 +69,9 @@ object Form1: TForm1
     TabOrder = 6
   end
   object Label1: TLabel
-    Left = 44
+    Left = 41
     Height = 15
-    Top = 129
+    Top = 136
     Width = 81
     Caption = 'Retorno Busca'
     ParentColor = False
@@ -79,7 +79,7 @@ object Form1: TForm1
   object Label2: TLabel
     Left = 528
     Height = 15
-    Top = 129
+    Top = 136
     Width = 77
     Caption = 'Retorno Envio'
     ParentColor = False
@@ -87,7 +87,7 @@ object Form1: TForm1
   object Memo2: TMemo
     Left = 528
     Height = 288
-    Top = 144
+    Top = 160
     Width = 488
     Lines.Strings = (
       'Memo2'

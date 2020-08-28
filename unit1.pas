@@ -47,6 +47,8 @@ type
     procedure DBGrid1CellClick(Column: TColumn);
   private
     const url = 'http://127.0.0.1:5000/';
+    function CarregarJson(tabela, uso: String): String;
+
   public
 
   end;
@@ -332,7 +334,7 @@ begin
   dadosJson.Add('nometabela', 'Cliente');
 
   // CHAMO A FUNCAO  =  estrutura_grid (hello.py)
-  postJson.Add('estrutura_grid', dadosJson);
+  postJson.Add('cliente_filtro', dadosJson);
 
   postJson.Add('userId', 1);
   With TFPHttpClient.Create(Nil) do
@@ -414,6 +416,30 @@ procedure TForm1.DBGrid1CellClick(Column: TColumn);
 begin
   edtcodcliente.Text := IntToStr(BufDataset1.FieldByName('codcliente').AsInteger);
   edtnomecliente.Text := BufDataset1.FieldByName('nomecliente').AsString;
+end;
+
+function TForm1.CarregarJson(tabela, uso: String): String;
+var
+  postJson: TJSONObject;
+  dadosJson: TJSONObject;
+  responseData: String;
+begin
+  postJson := TJSONObject.Create;
+  dadosJson := TJSONObject.Create;
+  postJson.Add('title', uso);
+  postJson.Add('body', tabela);
+  dadosJson.Add(tabela, tabela);
+  postJson.Add(uso, dadosJson);
+  postJson.Add('userId', 1);
+  With TFPHttpClient.Create(Nil) do
+    try
+      AddHeader('Content-Type', 'application/json');
+      RequestBody := TStringStream.Create(postJson.AsJSON);
+      responseData := Post(edtcaminho.Text);
+      result := responseData;
+    finally
+     Free;
+    end;
 end;
 
 end.
