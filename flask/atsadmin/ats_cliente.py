@@ -1,6 +1,8 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.ext.declarative import DeclarativeMeta
+from sqlalchemy.sql import insert
+from sqlalchemy.exc import SQLAlchemyError
 import fdb
 from flask import jsonify
 import json
@@ -40,13 +42,53 @@ class AtsCliente:
         #    print('Cliente : %s' %(cli.nomecliente))
         return None
 
+    def integra_venda(self, dados):
+        #con = AtsConn.sessao()
+        path_file = '/home/publico/tmp/'
+        import pudb;pu.db
+        dados_json = json.loads(dados)
+        
+        for item in dados_json:
+            if 'ID_ENTRADA' in dados_json:
+                arquivo = '%spag_%s.txt' %(path_file,dados_json['ID_ENTRADA'])
+                with open(arquivo, 'w') as f:
+                        f.write(json.dumps(dados_json))
+                        f.close
+                break
+
+            if 'CODCLIENTE' in dados_json:
+                arquivo = '%smov_%s.txt' %(path_file,dados_json['CODMOVIMENTO'])
+                with open(arquivo, 'w') as f:
+                        f.write(json.dumps(dados_json))
+                        f.close
+                break
+            if 'item' in item:
+                x = dados_json[item]
+                #ver = json.dumps(x)
+                ver_json = json.loads(x)
+                for det in ver_json:
+                    codmov = det.get('CODMOVIMENTO')
+                    arquivo = '%sdet_%s.txt' %(path_file,codmov)
+                    #data_file = open(arquivo, 'w')
+                    with open(arquivo, 'w') as f:
+                        f.write(json.dumps(dados_json))
+                        f.close
+                    break
+            break
+            #z = json.dumps(item)
+            #d = json.loads(z)
+            
+            #print (x)
+
     def ver_cliente(self):
-        con = AtsConn.sessao()
+        #con = AtsConn.sessao()
         #session.query(User).filter(User.name=='John').first()
 
         lista = []
         #import pudb;pu.db
+        
         #indice = 0
+        """
         for cli in con.query(Cliente).order_by(Cliente.codcliente).limit(80):
             cliente = {}
             cliente['codcliente'] = cli.codcliente
@@ -60,14 +102,52 @@ class AtsCliente:
             lista.append(cliente)
             #indice += 1
         #import pudb;pu.db
+        """
+        lista.append('opa conectou')
         return jsonify(lista)
-        
-    def edita_cliente(self, dados):
+
+    def cliente_insert(self, dados):
+        import pudb;pu.db
+        con = AtsConn.sessao()
+        #Cliente.insert().values(dados)
+        try:
+            i = insert(Cliente)
+            i = i.values(dados)
+            con.execute(i)
+            con.commit()
+            con.close_all()
+        except SQLAlchemyError as e:
+            error = str(e.__dict__['orig'])
+            con.close_all()
+            return error
+        return 'Cadastro incluido com sucesso.'
+
+    def cliente_update(self, dados):
         #import pudb;pu.db
-        if dados:
-            nome = dados['nomecliente']
-            codigo = dados['codcliente']
-        return 'Cliente atualizado com sucesso'
+        con = AtsConn.sessao()
+        # Convert Models to dicts
+        #entry_dict = dados.as_dict()
+        #db_result_dict = cli_ids.first().as_dict()
+
+        # Update database result with passed in entry. Skip of None
+        #for value in dados:
+        #    if dados[value] is not None:
+        #        cli_ids = dados[value]
+
+        # Update db and close connections
+        #cli_ids.update(dados)
+        cli = con.query(Cliente).filter_by(codcliente=dados['codcliente'])
+        #update_statement = Cliente.update()\
+        #   .where(codcliente = dados['codcliente'])\
+        #   .values(atualiza)
+        try:
+            cli.update(dados)
+            con.commit()
+            con.close_all()
+        except:
+            con.close_all()
+            return 'ERRO na atualização do cadastro.'
+        return 'Cadastro atualizado com sucesso.'
 
     def cliente_tabela(self):
         # LEIO A TABELA INTEIR E CRIO UM JSON COM OS CAMPOS
@@ -83,7 +163,7 @@ class AtsCliente:
         #import pudb;pu.db
         return jsonify(tabela)
 
-    def estrutura_cliente_grid(self):
+    def estrutura_filtro(self):
         # VOU CRIAR UM JSON SOMENTE CAMPOS PRA EXIBIR GRID
         tabela = []
         campos = {
@@ -135,4 +215,3 @@ class AtsCliente:
         #import pudb;pu.db
         lista.append(linha)
         return jsonify(lista)
-
