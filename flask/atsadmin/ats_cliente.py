@@ -9,6 +9,7 @@ import json
 import datetime
 from atsadmin.tabelas_ats import Cliente
 from atsadmin.conexao_firebird import AtsConn
+import os.path
 #from browser import document
 #from browser.html import INPUT, LABEL, BR, FORM
 
@@ -42,29 +43,67 @@ class AtsCliente:
         #    print('Cliente : %s' %(cli.nomecliente))
         return None
 
+    def integra_cli(self):
+        path_file = '/home/publico/tmp/integra/cliente.txt'
+        dados = []
+        #import pudb;pu.db
+        if os.path.exists(path_file):
+            with open(path_file) as json_file:
+                dados = json.load(json_file)
+        else:
+            cliente = {}
+            cliente['codcliente'] = 0
+            dados.append(cliente)
+        return jsonify(dados)
+        """
+        lista = []
+        for cli in con.query(Cliente).order_by(Cliente.codcliente).limit():
+            cliente = {}
+            cliente['codcliente'] = cli.codcliente
+            cliente['nomecliente'] = cli.nomecliente
+            cliente['razaosocial'] = cli.razaosocial
+            cliente['cnpj'] = ''
+            if cli.cnpj:
+                cliente['cnpj'] = cli.cnpj
+            x = cli.razaosocial
+            print ('Cliente: %s' %(cli.nomecliente))
+            lista.append(cliente)
+            #indice += 1
+        #
+        """
+        #lista.append('opa conectou')
+        #return jsonify(lista)
+        
+
     def integra_venda(self, dados):
         #con = AtsConn.sessao()
-        path_file = '/home/publico/tmp/'
-        import pudb;pu.db
+        path_file = '/home/publico/tmp/integra/'
+        #import pudb;pu.db
         dados_json = json.loads(dados)
-        
+        feito = 'N'
         for item in dados_json:
-            if 'ID_ENTRADA' in dados_json:
-                arquivo = '%spag_%s.txt' %(path_file,dados_json['ID_ENTRADA'])
-                with open(arquivo, 'w') as f:
+            if 'pag' in item:
+                x = dados_json[item]
+                ver_json = json.loads(x)
+                for det in ver_json:
+                    codmov = det.get('CODMOVIMENTO')
+                    arquivo = '%spag_%s.txt' %(path_file,codmov)
+                    with open(arquivo, 'w') as f:
                         f.write(json.dumps(dados_json))
                         f.close
+                        feito = 'pag_%s' %(codmov)
+                    break
                 break
-
             if 'CODCLIENTE' in dados_json:
-                arquivo = '%smov_%s.txt' %(path_file,dados_json['CODMOVIMENTO'])
+                codmov = dados_json['CODMOVIMENTO']
+                arquivo = '%smov_%s.txt' %(path_file,codmov)
                 with open(arquivo, 'w') as f:
                         f.write(json.dumps(dados_json))
                         f.close
+                        feito = 'mov_%s' %(codmov)
                 break
             if 'item' in item:
                 x = dados_json[item]
-                #ver = json.dumps(x)
                 ver_json = json.loads(x)
                 for det in ver_json:
                     codmov = det.get('CODMOVIMENTO')
@@ -73,12 +112,14 @@ class AtsCliente:
                     with open(arquivo, 'w') as f:
                         f.write(json.dumps(dados_json))
                         f.close
+                        feito = 'det_%s' %(codmov)
                     break
             break
             #z = json.dumps(item)
             #d = json.loads(z)
             
             #print (x)
+        return feito
 
     def ver_cliente(self):
         #con = AtsConn.sessao()

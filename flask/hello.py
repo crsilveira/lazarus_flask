@@ -32,6 +32,9 @@ def hello_world():
         if 'tab_venda' in data:
             cli = AtsCliente()
             x = cli.integra_venda(data['tab_venda'])
+        if 'tab_cli' in data:
+            cli = AtsCliente()
+            x = cli.integra_cli()
         return x
     else:
         #import pudb;pu.db
